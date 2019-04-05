@@ -1,23 +1,23 @@
 use std::mem;
 
 #[derive(Debug)]
-pub struct Stack{
-	size:i32,
-	head:Option<Box<Node>>,
+pub struct Stack <T> {
+	size:u32,
+	head:Option<Box<Node<T>>>,
 }
 #[derive(Debug)]
-pub struct Node {
-    elem: i32,
-    next: Option<Box<Node>>,
+pub struct Node <T> {
+    elem: T,
+    next: Option<Box<Node<T>>>,
 }
-impl Stack {
+impl <T> Stack <T>{
 	pub fn new() -> Self {
         Stack{
         	size : 0,
         	head : None
         }
     }
-	pub fn push(&mut self,num: i32){
+	pub fn push(&mut self,num: T){
 		self.size = self.size + 1;
         let new_node = Box::new(Node {
             elem: num,
@@ -25,7 +25,7 @@ impl Stack {
         });
 		self.head = Some(new_node);
 	}
-	pub fn pop(&mut self) -> Option<i32>{
+	pub fn pop(&mut self) -> Option<T>{
 		match mem::replace(&mut self.head,None) {
 			Some(node) => {
 				self.size = self.size - 1;
