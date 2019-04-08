@@ -6,7 +6,7 @@ pub struct Stack <T> {
 	head:Option<Box<Node<T>>>,
 }
 #[derive(Debug)]
-pub struct Node <T> {
+struct Node <T> {
     elem: T,
     next: Option<Box<Node<T>>>,
 }
@@ -16,6 +16,9 @@ impl <T> Stack <T>{
         	size : 0,
         	head : None
         }
+    }
+    pub fn length(&self) -> u32{
+    	self.size
     }
 	pub fn push(&mut self,num: T){
 		self.size = self.size + 1;
